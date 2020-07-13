@@ -26,10 +26,7 @@ function TodoItem({todo, index, onChange, removeTodo, editTodo}) {
                 />
                 <strong>{index+1 }</strong>
                 &nbsp;
-                {edit ? <input value={value} 
-                onChange={event => setValue(event.target.value)}
-                onKeyDown={event => event.key==='Enter'&& ewg()}
-                /> : `${todo.title}`}
+                {edit ? <input value={value} onChange={event => setValue(event.target.value)} onKeyDown={event => event.key==='Enter'&& ewg()}/> : `${todo.title}`}
             </span>
             <div style={{display:'flex', flexDirection:'column'}}>
                 <button className="editBtn" onClick={() => setEdit(!edit)}>edit</button>

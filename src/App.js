@@ -1,17 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import TodoList from './Todo/TodoList'
 import AddTodo from './Todo/AddTodo';
 
 function App() {
 
 
-  const initialTodos =() => JSON.parse(localStorage.getItem('todos')) || []
+  // const initialTodos =() => JSON.parse(localStorage.getItem('todos')) || []
+  
+  const [todos, setTodos] = useState([]);//initialTodos
 
-  const [todos, setTodos] = useState(initialTodos);
-
-  useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos))
-  }, [todos])
+  // useEffect(() => {
+  //   localStorage.setItem('todos', JSON.stringify(todos))
+  // }, [todos])
+  
 
   function toggleTodo(id) {
     setTodos(

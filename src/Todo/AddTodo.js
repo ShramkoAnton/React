@@ -1,9 +1,18 @@
 import React, {useState} from "react"
+// import axios from 'axios'
 
 function AddTodo({onCreate}) {
 
     const [value, setValue] = useState('')
-    
+    // const [newTodo, setNewTodo] = useState({})
+
+    // axios.post('http://localhost:4000/todos', newTodo)
+    // .then(res => console.log(res.data));
+
+    // setNewTodo({
+    //     title: '',
+    //     completed: false
+    // })
     function submitHandler(event) {
         event.preventDefault()
 
