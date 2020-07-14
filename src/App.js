@@ -18,7 +18,8 @@ function App() {
   }, [])
 
   function toggleTodo(id) {
-    axios.patch(`http://localhost:3003/${id}`)
+    const currentTodo = todos.find(elem => elem._id === id)
+    axios.patch(`http://localhost:3003/${id}`, {data: {completed: !currentTodo.completed}})
     .then (res => setTodos(
       todos.map(todo => {
       if (todo._id === id) {
@@ -37,35 +38,28 @@ function App() {
 
 
   function editTodo(id, value) {
-    axios.patch(`http://localhost:3003/${id}`)
-    .then(() => setTodos(
+    if(value.length>0) {
+      axios.patch(`http://localhost:3003/${id}`, {data: {title: value}})
+      .then(() => setTodos(
       todos.map(todo => {
         if (todo._id === id && value !=='') {
           todo.title = value
         } 
         return todo
       })
-    ))
+    ))}
   }
 
 
-    function addTodo( title) {
-    const newTodo = axios.post(`http://localhost:3003/`, { body: { title } })
-    const oldTodos = [...todos];
-    oldTodos.push(newTodo)
-    setTodos(
-      oldTodos
-    )
+    const addTodo = async (title) => {
+      
+    const {data} = await axios.post(`http://localhost:3003/`, { data: { title } })
+      const oldTodos = [...todos];
+      oldTodos.push(data)
+      setTodos(
+        oldTodos
+      )
   }
-
-  //   function addTodo(title) {
-  //   const newTodo = axios.post(`http://localhost:3003/`, { body: { title } })
-  //   const oldTodos = [...todos];
-  //   oldTodos.push(newTodo)
-  //   setTodos(
-  //     oldTodos
-  //   )
-  // }
 
   return (
     <div className="wrapper">

@@ -5,22 +5,16 @@ function AddTodo({onCreate}) {
 
     const [value, setValue] = useState('')
     
-
-
-    function submitHandler(event) {
-        event.preventDefault()
-        if(value.trim()) {
-            axios.post('http://localhost:3003/',  {title: value})
-            onCreate(value)
-            setValue('')
-        }
+    const addValue = (text) => {
+        onCreate(text);
+        setValue('');
     }
 
     return(
-        <form style={{marginBottom: '1rem'}} onSubmit={submitHandler}>
+        <>
             <input placeholder="write something interesting" value={value} onChange={event => setValue(event.target.value)} />
-            <button type="submit" >Add</button>
-        </form>
+            <button type="click" onClick={() => addValue(value)} >Add</button>
+        </>
     )
 }
 
