@@ -18,10 +18,10 @@ function App() {
   }, [])
 
   function toggleTodo(id) {
-    axios.patch('http://localhost:3003/')
+    axios.patch(`http://localhost:3003/${id}`)
     .then (res => setTodos(
       todos.map(todo => {
-      if (todo.id === id) {
+      if (todo._id === id) {
         todo.completed = !todo.completed   
       }
       return todo
@@ -29,48 +29,43 @@ function App() {
     ))
   }
 
-  // function removeTodo(id) {
-  //   axios.delete('http://localhost:3003/id')
-  //   .then(res => setTodos(
-  //     todos.filter(todo => todo.id !== id)),
-  //     console.log(id)
-  //   );
-    
-  // }
-
   function removeTodo(id) {
-    setTodos(todos.filter(todo => todo.id !== id));
-  
+    axios.delete(`http://localhost:3003/${id}`)
+    .then(() => setTodos(todos.filter(todo => todo._id !== id)))
     console.log(id);
-
   }
 
-  // useEffect(() => {
-  //   removeTodo()
-  // }, [])
 
   function editTodo(id, value) {
-    setTodos(
+    axios.patch(`http://localhost:3003/${id}`)
+    .then(() => setTodos(
       todos.map(todo => {
-        if (todo.id === id && value !=='') {
+        if (todo._id === id && value !=='') {
           todo.title = value
         } 
         return todo
       })
+    ))
+  }
+
+
+    function addTodo( title) {
+    const newTodo = axios.post(`http://localhost:3003/`, { body: { title } })
+    const oldTodos = [...todos];
+    oldTodos.push(newTodo)
+    setTodos(
+      oldTodos
     )
   }
 
-  function addTodo(title) {
-    setTodos(
-      todos.concat([
-        {
-          title,
-          id: Date.now(),
-          completed:false
-        }
-      ])
-    )
-  }
+  //   function addTodo(title) {
+  //   const newTodo = axios.post(`http://localhost:3003/`, { body: { title } })
+  //   const oldTodos = [...todos];
+  //   oldTodos.push(newTodo)
+  //   setTodos(
+  //     oldTodos
+  //   )
+  // }
 
   return (
     <div className="wrapper">
