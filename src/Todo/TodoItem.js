@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 
-function TodoItem({todo, index, onChange, removeTodo, editTodo}) {
+function TodoItem({todo, onChange, removeTodo, editTodo}) {
     
     const classes = []
 
@@ -21,10 +21,9 @@ function TodoItem({todo, index, onChange, removeTodo, editTodo}) {
             <span className={classes.join(' ')}>
                 <input className="input"
                 type="checkbox" 
-                checked={todo.completed}
+                checked={todo.completed}  
                 onChange={() => onChange(todo.id)}
                 />
-                <strong>{index+1 }</strong>
                 &nbsp;
                 {edit ? <input value={value} onChange={event => setValue(event.target.value)} onKeyDown={event => event.key==='Enter'&& ewg()}/> : `${todo.title}`}
             </span>
