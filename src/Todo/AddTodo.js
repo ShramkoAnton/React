@@ -1,7 +1,6 @@
 import React, {useState} from "react"
-import axios from 'axios'
 
-function AddTodo({onCreate}) {
+function AddTodo({onCreate, todo, onChange, checkAll}) {
 
     const [value, setValue] = useState('')
     
@@ -9,12 +8,23 @@ function AddTodo({onCreate}) {
         onCreate(text);
         setValue('');
     }
-
+    
     return(
-        <>
-            <input placeholder="write something interesting" value={value} onChange={event => setValue(event.target.value)} />
+        <div className="header-input">
+            <input className="header-input__input" placeholder="write something interesting" 
+                onKeyDown={event => event.key==='Enter' && addValue(value)} 
+                value={value} 
+                onChange={event => setValue(event.target.value)} 
+            />
             <button type="click" onClick={() => addValue(value)} >Add</button>
-        </>
+            {/* <div className="checkAll">
+                <input className="input" type="checkbox" 
+                    checked={todo.completed}  
+                    onChange={() => onChange(todo._id)}
+                />
+                <p>check all</p>
+            </div> */}
+        </div>
     )
 }
 

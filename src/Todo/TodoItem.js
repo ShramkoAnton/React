@@ -10,7 +10,8 @@ function TodoItem({todo, onChange, removeTodo, editTodo}) {
     if (todo.completed){
         classes.push('done')
     }
-    function ewg() {
+
+    function editing() {
         editTodo(todo._id, value)
         setEdit(!edit)
         setValue(todo.title)
@@ -25,9 +26,9 @@ function TodoItem({todo, onChange, removeTodo, editTodo}) {
                 onChange={() => onChange(todo._id)}
                 />
                 &nbsp;
-                {edit ? <input value={value} onChange={event => setValue(event.target.value)} onKeyDown={event => event.key==='Enter'&& ewg()}/> : `${todo.title}`}
+                {edit ? <input value={value} onChange={event => setValue(event.target.value)} onKeyDown={event => event.key==='Enter'&& editing()}/> : `${todo.title}`}
             </span>
-            <div style={{display:'flex', flexDirection:'column'}}>
+            <div className="divBtn">
                 <button className="editBtn" onClick={() => setEdit(!edit)}>edit</button>
                 <button className="rm" onClick={() => removeTodo(todo._id)}>&times;</button>
             </div>

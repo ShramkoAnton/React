@@ -19,19 +19,39 @@ code {
   width: 600px;
 }
 
+.header-input {
+  margin-bottom: 1rem;
+}
+
+.header-input__input {
+  width: 50%;
+}
+
+.checkAll {
+  display: flex;
+  margin-top: 0.5rem;
+}
+p {
+  margin: 0;
+}
+
+.divBtn {
+  display: flex;
+}
+
 .rm {
-  background: rgb(251, 255, 0);
+  background: rgb(255, 0, 0);
   /* border-radius: 20%; */
   color: rgb(3, 0, 0);
   border: none;
-  border-width: 50px;
-
+  width: 30px;
 }
 
 .editBtn{
   background: rgb(92, 140, 212);
   color: rgb(3, 0, 0);
   border: none;
+  margin-right: 1rem;
 }
 
 .done {

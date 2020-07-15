@@ -17,6 +17,12 @@ function App() {
     fetchTodo()
   }, [])
 
+  // function checkAll(event) {
+  //   setTodos(
+  //     todos.forEach(todo=> todo.completed = event.target.checked)
+  //   )
+  // }
+
   function toggleTodo(id) {
     const currentTodo = todos.find(elem => elem._id === id)
     axios.patch(`http://localhost:3003/${id}`, {data: {completed: !currentTodo.completed}})
@@ -36,7 +42,6 @@ function App() {
     console.log(id);
   }
 
-
   function editTodo(id, value) {
     if(value.length>0) {
       axios.patch(`http://localhost:3003/${id}`, {data: {title: value}})
@@ -50,15 +55,13 @@ function App() {
     ))}
   }
 
-
-    const addTodo = async (title) => {
-      
-    const {data} = await axios.post(`http://localhost:3003/`, { data: { title } })
-      const oldTodos = [...todos];
-      oldTodos.push(data)
-      setTodos(
-        oldTodos
-      )
+  const addTodo = async (title) => {
+    const {data} = await axios.post(`http://localhost:3003/`, {data: {title}})
+    const oldTodos = [...todos];
+    oldTodos.push(data)
+    setTodos(
+      oldTodos
+    )
   }
 
   return (
